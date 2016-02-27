@@ -34,16 +34,14 @@
             <version>4.3.1.Final</version>
         </dependency>
         <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-jpamodelgen</artifactId>
-                <version>4.3.1.Final</version>
-                <scope>provided</scope>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>4.3.1.Final</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.wildfly.plugins</groupId>
@@ -65,9 +63,6 @@
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>${wildfly.version}</version>
-                <!--<configuration>
-                    <port>9999</port>
-                </configuration>-->
                 <!--<configuration>
                     <hostname>${wildfly-hostname}</hostname>
                     <port>${wildfly-port}</port>
