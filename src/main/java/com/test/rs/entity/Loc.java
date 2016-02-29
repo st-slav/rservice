@@ -174,6 +174,7 @@ public class Loc implements Serializable {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "latitude: " + this.locLatitude.toString() 
                 + ", longitude: " + this.locLongitude.toString()
                 + ", horizontalAccuracy: " + this.locHorizontalAccuracy.toString()
@@ -183,5 +184,8 @@ public class Loc implements Serializable {
                 + ", verticalAccuracy: " + this.locVerticalAccuracy.toString()
                 + ", actuality: " + this.locActuality
                 + ", timestamp: " + this.locTimestamp.toString();
+=======
+        return "com.test.rs.entity.Loc[ id=" + locId + " ]";
+>>>>>>> 6ba3fe343e2ac176700501225261d648e035d7b5
     }
 }
