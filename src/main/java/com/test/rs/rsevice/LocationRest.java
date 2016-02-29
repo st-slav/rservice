@@ -1,9 +1,11 @@
 package com.test.rs.rsevice;
 
 import com.test.rs.entity.Loc;
+import com.test.rs.log.ProducerLogBean;
 import com.test.rs.logic.LocLocal;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -16,17 +18,21 @@ import javax.ws.rs.core.MediaType;
 
 public class LocationRest {
     
-    @EJB
+    @EJB(beanName = "location")
     private LocLocal locLocal;
+    
+    @EJB
+    private ProducerLogBean producerLog;
     
     @POST
     @Path("/saveloc")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void saveClientLocaton(String jPakage){
-        locLocal.addLocListFromRestPakage(new LocationRest().convertJsonStringToArrayListLoc(jPakage));
+    @Consumes(MediaType.TEXT_HTML)
+    public void saveClientLocaton(String jPackage){
+        locLocal.addLocListFromRestPakage(new LocationRest().convertJsonStringToArrayListLoc(jPackage));
+        producerLog.sendMessage(new Date() + " [rservise]: " + jPackage);
     }
     
-    private ArrayList<Loc> convertJsonStringToArrayListLoc(String jString){
+    public ArrayList<Loc> convertJsonStringToArrayListLoc(String jString){
         JsonReader jReader = Json.createReader(new StringReader(jString));
         JsonArray jArray = jReader.readArray();
         ArrayList<Loc> locs = new ArrayList<Loc>();
@@ -41,7 +47,7 @@ public class LocationRest {
                     (float) jObject.getJsonNumber("altitude").doubleValue(),
                     (float) jObject.getJsonNumber("verticalAccuracy").doubleValue(),
                     jObject.getString("actuality"),
-                    jObject.getJsonNumber("course").bigIntegerValue()));
+                    jObject.getJsonNumber("timestamp").bigIntegerValue()));
         }
         return locs;
     }

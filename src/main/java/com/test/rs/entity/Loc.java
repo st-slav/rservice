@@ -174,6 +174,14 @@ public class Loc implements Serializable {
 
     @Override
     public String toString() {
-        return "com.test.rs.entity.Loc[ id=" + locId + " ]";
+        return "latitude: " + this.locLatitude.toString() 
+                + ", longitude: " + this.locLongitude.toString()
+                + ", horizontalAccuracy: " + this.locHorizontalAccuracy.toString()
+                + ", speed: " + this.locSpeed.toString()
+                + ", course: " + this.locCourse.toString()
+                + ", altitude: " + this.locAltitude.toString()
+                + ", verticalAccuracy: " + this.locVerticalAccuracy.toString()
+                + ", actuality: " + this.locActuality
+                + ", timestamp: " + this.locTimestamp.toString();
     }
 }
