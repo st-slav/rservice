@@ -26,7 +26,7 @@ public class LocationRest {
     
     @POST
     @Path("/saveloc")
-    @Consumes(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_JSON)
     public void saveClientLocaton(String jPackage){
         locLocal.addLocListFromRestPakage(new LocationRest().convertJsonStringToArrayListLoc(jPackage));
         producerLog.sendMessage(new Date() + " [rservise]: " + jPackage);
