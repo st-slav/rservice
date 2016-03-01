@@ -25,7 +25,6 @@ public class LocationRestTest {
                 + "\"altitude\":5,\"verticalAccuracy\":5,\"actuality\":\"GPS\",\"timestamp\":139333763500}]";
         LocationRest rs = new LocationRest();
         ArrayList<Loc> loks = rs.convertJsonStringToArrayListLoc(jPackage);
-        System.out.println(loks.get(1).toString());
         assertTrue(loks.get(0).toString().equals("latitude: 0.0, longitude: 0.0, horizontalAccuracy: 0.0, speed: 4.0, "
                 + "course: 0.0, altitude: 0.0, verticalAccuracy: 5.0, actuality: GPS, timestamp: 139333763500"));
         assertTrue(loks.get(1).toString().equals("latitude: 1.0, longitude: 2.0, horizontalAccuracy: 3.0, speed: 4.0, "

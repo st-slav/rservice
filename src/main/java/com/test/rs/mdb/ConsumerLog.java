@@ -7,11 +7,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.logging.Logger;
+import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.jms.*;
 
 
-@MessageDriven(mappedName = "java:/jms/queue/ExpiryQueue")
+@MessageDriven(mappedName = "java:/jms/queue/ExpiryQueue", activationConfig = {
+    @ActivationConfigProperty(propertyName="destination", propertyValue="java:/jms/queue/ExpiryQueue")
+    })
 public class ConsumerLog implements MessageListener{
 
     @Override

@@ -26,10 +26,10 @@ public class LocationRest {
     
     @POST
     @Path("/saveloc")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes("application/json")
     public void saveClientLocaton(String jPackage){
-        locLocal.addLocListFromRestPakage(new LocationRest().convertJsonStringToArrayListLoc(jPackage));
-        producerLog.sendMessage(new Date() + " [rservise]: " + jPackage);
+        locLocal.addLocListFromRestPakage(convertJsonStringToArrayListLoc(jPackage));
+        producerLog.sendMessage(new Date() + " [rservice]: " + jPackage);
     }
     
     public ArrayList<Loc> convertJsonStringToArrayListLoc(String jString){
