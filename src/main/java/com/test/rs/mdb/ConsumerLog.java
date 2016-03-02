@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
@@ -30,7 +31,11 @@ public class ConsumerLog implements MessageListener{
 
         try {
             PrintWriter prWr = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-            prWr.println(msg.toString());
+            try {
+                prWr.println(msg.getBody(String.class));
+            } catch (JMSException ex) {
+                Logger.getLogger(ConsumerLog.class.getName()).log(Level.SEVERE, null, ex);
+            }
             prWr.close();
         } catch (IOException ex) {
             Logger.getLogger(ConsumerLog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

@@ -22,5 +22,4 @@ public class ApplicationConfig extends Application{
     public Set<Class<?>> getClasses() {
         return classes;
     }
-
 }

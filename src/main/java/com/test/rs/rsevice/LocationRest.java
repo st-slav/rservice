@@ -14,8 +14,11 @@ import javax.json.JsonReader;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
+@Path("/saveloc")
 public class LocationRest {
     
     @EJB(beanName = "location")
@@ -25,11 +28,12 @@ public class LocationRest {
     private ProducerLogBean producerLog;
     
     @POST
-    @Path("/saveloc")
-    @Consumes("application/json")
-    public void saveClientLocaton(String jPackage){
+    @Produces("text/html")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response saveClientLocaton(String jPackage){
         locLocal.addLocListFromRestPakage(convertJsonStringToArrayListLoc(jPackage));
         producerLog.sendMessage(new Date() + " [rservice]: " + jPackage);
+        return Response.status(200).build();
     }
     
     public ArrayList<Loc> convertJsonStringToArrayListLoc(String jString){
